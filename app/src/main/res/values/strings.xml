@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BookStore</string>
     <string name="action_delete_all_entries">Delete All Entries</string>
-    <string name="editor_activity_title_new_pet">Add a Book</string>
+    <string name="editor_activity_title_new_book">Add a Book</string>
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
     <string name="category_name">Name:</string>

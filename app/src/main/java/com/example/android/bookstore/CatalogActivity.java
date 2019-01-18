@@ -7,7 +7,6 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.FloatingActionButton;
@@ -18,9 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.content.CursorLoader;
 
-import com.example.android.bookstore.data.StoreDbHelper;
 import com.example.android.bookstore.data.StoreContract.BookEntry;
 
 public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
@@ -72,7 +70,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         values.put(BookEntry.COLUMN_BOOK_PRICE,15);
         values.put(BookEntry.COLUMN_BOOK_QUANTITY,10);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME,"Editora Erika");
-        values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE,55555555555);
+        values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE,555555555);
 
         Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
     }
@@ -84,15 +82,12 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu options from the res/menu/menu_catalog.xml file.
-        // This adds menu items to the app bar.
         getMenuInflater().inflate(R.menu.menu_catalog, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.action_delete_all_entries:
                 deleteAllBooks();

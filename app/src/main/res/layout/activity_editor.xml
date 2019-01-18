@@ -96,7 +96,7 @@
             android:textAppearance="?android:textAppearanceMedium"/>
 
         <EditText
-            android:id="@+id/edit_book_supppier_name"
+            android:id="@+id/edit_book_suppplier_name"
             android:layout_width="match_parent"
             android:inputType="text"
             android:hint="@string/hint_book_supplier_name"
