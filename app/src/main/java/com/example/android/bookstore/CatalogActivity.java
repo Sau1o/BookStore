@@ -1,6 +1,8 @@
 package com.example.android.bookstore;
 
+import android.app.LoaderManager;
 import android.content.ContentValues;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +13,9 @@ import android.widget.TextView;
 import com.example.android.bookstore.data.StoreDbHelper;
 import com.example.android.bookstore.data.StoreContract.BookEntry;
 
-public class CatalogActivity extends AppCompatActivity {
+public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+
+    private static final int BOOK_LOADER = 0;
 
     private StoreDbHelper mDbHelper;
 
