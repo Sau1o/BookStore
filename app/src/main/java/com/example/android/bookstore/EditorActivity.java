@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +41,13 @@ public class EditorActivity extends AppCompatActivity implements
 
     private EditText mSupplierPhoneEditText;
 
+    private Button mPlusButton;
+
+    private Button mMinusButton;
+
     private boolean mBookHasChanged = false;
+
+    int quantity = 0;
 
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
@@ -71,12 +78,35 @@ public class EditorActivity extends AppCompatActivity implements
         mQuantityText = findViewById(R.id.edit_book_quantity);
         mSupplierNameEditText = findViewById(R.id.edit_book_suppplier_name);
         mSupplierPhoneEditText = findViewById(R.id.edit_book_supplier_phone);
+        mPlusButton = findViewById(R.id.button_plus);
+        mMinusButton = findViewById(R.id.button_minus);
 
         mNameEditText.setOnTouchListener(mTouchListener);
         mPriceEditText.setOnTouchListener(mTouchListener);
         mQuantityText.setOnTouchListener(mTouchListener);
         mSupplierNameEditText.setOnTouchListener(mTouchListener);
         mSupplierPhoneEditText.setOnTouchListener(mTouchListener);
+
+        mPlusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quantity += 1;
+                mQuantityText.setText(String.valueOf(quantity));
+            }
+        });
+
+        mMinusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(quantity>=1){
+                    quantity-=1;
+                    mQuantityText.setText(String.valueOf(quantity));
+                }else {
+                    Toast.makeText(getBaseContext(), getString(R.string.info_value_quantity), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
     }
 
     private void saveBook(){
@@ -197,12 +227,12 @@ public class EditorActivity extends AppCompatActivity implements
                 BookEntry.COLUMN_BOOK_SUPPLIER_NAME,
                 BookEntry.COLUMN_BOOK_SUPPLIER_PHONE};
 
-        return new CursorLoader(this,   // Parent activity context
-                mCurrentBookUri,         // Query the content URI for the current pet
-                projection,             // Columns to include in the resulting Cursor
-                null,                   // No selection clause
-                null,                   // No selection arguments
-                null);                  // Default sort order
+        return new CursorLoader(this,
+                mCurrentBookUri,
+                projection,
+                null,
+                null,
+                null);
     }
 
     @Override
