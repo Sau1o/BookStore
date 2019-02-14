@@ -1,15 +1,15 @@
-package com.example.android.bookstore;
+package com.example.android.books;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import com.example.android.bookstore.data.StoreContract.BookEntry;
+import com.example.android.books.data.StoreContract.BookEntry;
 
 public class BookCursorAdapter extends CursorAdapter {
 
@@ -31,12 +31,14 @@ public class BookCursorAdapter extends CursorAdapter {
         TextView quantityTextView =  view.findViewById(R.id.quantity);
 
         int nameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_NAME);
+        String t = String.valueOf(nameColumnIndex);
+        Log.i("test",t);
         int priceColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_PRICE);
-        int quantityColummnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_QUANTITY);
+        int quantityColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_QUANTITY);
 
         String bookName = cursor.getString(nameColumnIndex);
         int bookPrice = cursor.getInt(priceColumnIndex);
-        int bookQuantity = cursor.getInt(quantityColummnIndex);
+        int bookQuantity = cursor.getInt(quantityColumnIndex);
 
         nameTextView.setText(bookName);
         priceTextView.setText(bookPrice);

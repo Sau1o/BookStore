@@ -1,4 +1,4 @@
-package com.example.android.bookstore;
+package com.example.android.books;
 
 import android.app.LoaderManager;
 import android.content.ContentUris;
@@ -19,7 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.content.CursorLoader;
 
-import com.example.android.bookstore.data.StoreContract.BookEntry;
+import com.example.android.books.data.StoreContract.BookEntry;
 
 public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -41,13 +41,13 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
             }
         });
 
-        ListView petListView =  findViewById(R.id.list);
+        ListView bookListView =  findViewById(R.id.list);
         View emptyView = findViewById(R.id.empty_view);
-        petListView.setEmptyView(emptyView);
+        bookListView.setEmptyView(emptyView);
 
         mCursorAdapter = new BookCursorAdapter(this,null);
-        petListView.setAdapter(mCursorAdapter);
-        petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        bookListView.setAdapter(mCursorAdapter);
+        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent intent = new Intent(CatalogActivity.this,EditorActivity.class);
@@ -62,7 +62,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
         getLoaderManager().initLoader(BOOK_LOADER,null,this);
     }
-
+/*
     private void insertBook(){
 
         ContentValues values = new ContentValues();
@@ -74,7 +74,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
         Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
     }
-
+*/
     private void deleteAllBooks() {
         int rowsDeleted = getContentResolver().delete(BookEntry.CONTENT_URI, null, null);
         Log.v("CatalogActivity", rowsDeleted + " rows deleted from book database");

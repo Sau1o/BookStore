@@ -1,4 +1,4 @@
-package com.example.android.bookstore.data;
+package com.example.android.books.data;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.android.bookstore.data.StoreContract.BookEntry;
+import com.example.android.books.data.StoreContract.BookEntry;
 
 
 public class StoreProvider extends ContentProvider {
@@ -23,7 +23,7 @@ public class StoreProvider extends ContentProvider {
 
     static {
         sUriMatcher.addURI(StoreContract.CONTENT_AUTHORITY,StoreContract.PATH_BOOKS,BOOKS);
-        sUriMatcher.addURI(StoreContract.CONTENT_AUTHORITY,StoreContract.PATH_BOOKS + "/#",BOOKS);
+        sUriMatcher.addURI(StoreContract.CONTENT_AUTHORITY,StoreContract.PATH_BOOKS + "/#",BOOKS_ID);
     }
 
     private StoreDbHelper mDbHelper;
@@ -47,6 +47,7 @@ public class StoreProvider extends ContentProvider {
             case BOOKS:
                 cursor = database.query(BookEntry.TABLE_NAME,projection,selection,selectionArgs,
                         null,null,sortOrder);
+                Log.i("test1","aqui");
                 break;
             case BOOKS_ID:
                 selection = BookEntry._ID + "=?";
@@ -54,6 +55,7 @@ public class StoreProvider extends ContentProvider {
 
                 cursor = database.query(BookEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
+                Log.i("test1","aqui2");
                 break;
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);

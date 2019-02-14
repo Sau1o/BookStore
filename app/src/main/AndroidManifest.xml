@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.bookstore">
+    package="com.example.android.books">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CatalogActivity">
+        <activity
+            android:name="com.example.android.books.CatalogActivity"
+            android:label="BookStore">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,17 +19,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EditorActivity"
+            android:name="com.example.android.books.EditorActivity"
             android:theme="@style/EditorTheme"
-            android:parentActivityName=".CatalogActivity" >
+            android:parentActivityName="com.example.android.books.CatalogActivity" >
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CatalogActivity" />
+                android:value="com.example.android.books.CatalogActivity" />
         </activity>
         <provider
-            android:authorities="com.example.android.bookstore"
-            android:name=".data.StoreProvider"
+            android:authorities="com.example.android.books"
+            android:name="com.example.android.books.data.StoreProvider"
             android:exported="true" />
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.android.bookstore;
+package com.example.android.books;
 
 import android.app.AlertDialog;
 import android.app.LoaderManager;
@@ -22,7 +22,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.bookstore.data.StoreContract.BookEntry;
+import com.example.android.books.data.StoreContract.BookEntry;
 
 public class EditorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor>{
@@ -125,10 +125,22 @@ public class EditorActivity extends AppCompatActivity implements
 
         ContentValues values = new ContentValues();
         values.put(BookEntry.COLUMN_BOOK_NAME, nameString);
-        values.put(BookEntry.COLUMN_BOOK_PRICE, priceString);
-        values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantityString);
+        int price = 0;
+        if(!TextUtils.isEmpty(priceString)){
+            price = Integer.parseInt(priceString);
+        }
+        values.put(BookEntry.COLUMN_BOOK_PRICE, price);
+        int quantity = 0;
+        if(!TextUtils.isEmpty(quantityString)){
+            quantity = Integer.parseInt(quantityString);
+        }
+        values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantity);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, supplierNameString);
-        values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, supplierPhoneString);
+        int phone = 0;
+        if(!TextUtils.isEmpty(supplierPhoneString)){
+            phone = Integer.parseInt(supplierPhoneString);
+        }
+        values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, phone);
 
         if (mCurrentBookUri == null) {
 

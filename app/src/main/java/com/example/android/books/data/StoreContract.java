@@ -1,4 +1,4 @@
-package com.example.android.bookstore.data;
+package com.example.android.books.data;
 
 import android.content.ContentResolver;
 import android.net.Uri;
@@ -31,6 +31,6 @@ public final class StoreContract {
         public final static String COLUMN_BOOK_PRICE = "price";
         public final static String COLUMN_BOOK_QUANTITY = "quantity";
         public final static String COLUMN_BOOK_SUPPLIER_NAME = "supplier_name";
-        public final static String COLUMN_BOOK_SUPPLIER_PHONE = "supllier_phone";
+        public final static String COLUMN_BOOK_SUPPLIER_PHONE = "supplier_phone";
     }
 }

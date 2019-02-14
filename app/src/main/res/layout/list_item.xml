@@ -44,7 +44,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:textSize="?android:textAppearanceLarge"
             android:layout_gravity="center_vertical"
             tools:text="Quantity: 15"/>
 
@@ -52,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:text="SALE"/>
     </LinearLayout>
 </LinearLayout>

@@ -1,10 +1,10 @@
-package com.example.android.bookstore.data;
+package com.example.android.books.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.android.bookstore.data.StoreContract.BookEntry;
+import com.example.android.books.data.StoreContract.BookEntry;
 
 public class StoreDbHelper extends SQLiteOpenHelper {
 
@@ -16,7 +16,7 @@ public class StoreDbHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String SQL_CREATE_BOOKS_TABLE =  "CREATE TABLE " + BookEntry.TABLE_NAME + " ("
+         String SQL_CREATE_BOOKS_TABLE =  "CREATE TABLE " + BookEntry.TABLE_NAME + " ("
                 + BookEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + BookEntry.COLUMN_BOOK_NAME + " TEXT NOT NULL, "
                 + BookEntry.COLUMN_BOOK_PRICE + " INTEGER NOT NULL, "
