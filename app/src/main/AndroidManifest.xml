@@ -29,8 +29,8 @@
         </activity>
         <provider
             android:authorities="com.example.android.books"
-            android:name="com.example.android.books.data.StoreProvider"
-            android:exported="true" />
+            android:name="com.example.android.books.data.StoreProvider" android:exported="false" 
+             />
     </application>
 
 </manifest>

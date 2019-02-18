@@ -100,6 +100,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String[] projection = {
                 BookEntry._ID,
+                BookEntry.COLUMN_BOOK_NAME,
                 BookEntry.COLUMN_BOOK_PRICE,
                 BookEntry.COLUMN_BOOK_QUANTITY
         };
