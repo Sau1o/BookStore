@@ -52,11 +52,13 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent intent = new Intent(CatalogActivity.this,EditorActivity.class);
 
-                Uri currentPetUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI,id);
+                Uri currentBookUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI,id);
 
-                intent.setData(currentPetUri);
+                intent.setData(currentBookUri);
 
                 startActivity(intent);
+
+                Log.i("teste","entrou aqui");
             }
         });
 
