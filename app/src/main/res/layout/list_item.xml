@@ -50,8 +50,10 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:id="@+id/sale_button"
             android:layout_gravity="right"
             android:layout_weight="2"
-            android:text="SALE"/>
+            android:text="SALE"
+            android:focusable="false"/>
     </LinearLayout>
 </LinearLayout>

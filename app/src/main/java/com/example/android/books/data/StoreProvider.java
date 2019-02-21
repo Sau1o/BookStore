@@ -163,7 +163,7 @@ public class StoreProvider extends ContentProvider {
 
         if (values.containsKey(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE)) {
             Integer supplyPhone = values.getAsInteger(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE);
-            if (supplyPhone != null) {
+            if (supplyPhone == null) {
                 throw new IllegalArgumentException("Book requires one valid supplier phone");
             }
         }
