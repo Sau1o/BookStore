@@ -113,16 +113,26 @@
 
         <TextView
             android:text="@string/category_supplier_phone"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="4"
             android:layout_height="wrap_content"
             android:textColor="@color/colorAccent"
             android:textAppearance="?android:textAppearanceMedium"/>
 
         <EditText
             android:id="@+id/edit_book_supplier_phone"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="4"
             android:hint="@string/hint_book_supplier_phone"
             android:inputType="number"
             style="@style/EditorFieldStyle" />
+
+        <Button
+            android:id="@+id/callButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/call_text_button"
+            />
     </LinearLayout>
 </LinearLayout>

@@ -47,7 +47,6 @@ public class StoreProvider extends ContentProvider {
             case BOOKS:
                 cursor = database.query(BookEntry.TABLE_NAME,projection,selection,selectionArgs,
                         null,null,sortOrder);
-                Log.i("test1","aqui");
                 break;
             case BOOKS_ID:
                 selection = BookEntry._ID + "=?";
@@ -55,7 +54,6 @@ public class StoreProvider extends ContentProvider {
 
                 cursor = database.query(BookEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
-                Log.i("test1","aqui2");
                 break;
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);

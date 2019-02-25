@@ -45,6 +45,8 @@ public class EditorActivity extends AppCompatActivity implements
 
     private Button mMinusButton;
 
+    private Button mCallButton;
+
     private boolean mBookHasChanged = false;
 
     int quantity = 0;
@@ -80,6 +82,7 @@ public class EditorActivity extends AppCompatActivity implements
         mSupplierPhoneEditText = findViewById(R.id.edit_book_supplier_phone);
         mPlusButton = findViewById(R.id.button_plus);
         mMinusButton = findViewById(R.id.button_minus);
+        mCallButton = findViewById(R.id.callButton);
 
         mNameEditText.setOnTouchListener(mTouchListener);
         mPriceEditText.setOnTouchListener(mTouchListener);
@@ -104,6 +107,16 @@ public class EditorActivity extends AppCompatActivity implements
                 }else {
                     Toast.makeText(getBaseContext(), getString(R.string.info_value_quantity), Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        mCallButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phone = mSupplierPhoneEditText.getText().toString();
+                Uri uri = Uri.parse("tel:"+phone);
+                Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+                startActivity(intent);
             }
         });
 

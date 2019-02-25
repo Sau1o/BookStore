@@ -1,8 +1,6 @@
 package com.example.android.books;
 
-
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
@@ -16,11 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.app.LoaderManager;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.android.books.data.StoreContract.BookEntry;
@@ -28,17 +23,13 @@ import com.example.android.books.data.StoreContract.BookEntry;
 public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private static final int BOOK_LOADER = 0;
-    private TextView mQuantityText;
 
     BookCursorAdapter  mCursorAdapter;
-    private TextView mQuantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
-
-        mQuantity = findViewById(R.id.edit_book_quantity);
 
         FloatingActionButton fab =  findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,14 +63,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         });
 
         getLoaderManager().initLoader(BOOK_LOADER,null,this);
-
-    }
-
-
-    public static void bookSold(View v){
-        Log.i("test","entrou aqui");
-        Toast.makeText(v.getContext(), "botao clicado", Toast.LENGTH_SHORT)
-                .show();
 
     }
 
