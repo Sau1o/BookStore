@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
-            android:hint="1000"
+            android:hint="00"
             android:inputType="number"/>
 
         <Button
@@ -124,7 +124,7 @@
             android:layout_width="0dp"
             android:layout_weight="4"
             android:hint="@string/hint_book_supplier_phone"
-            android:inputType="number"
+            android:inputType="phone"
             style="@style/EditorFieldStyle" />
 
         <Button

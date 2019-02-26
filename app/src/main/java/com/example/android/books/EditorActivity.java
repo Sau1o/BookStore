@@ -101,10 +101,16 @@ public class EditorActivity extends AppCompatActivity implements
         mMinusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(quantity>=1){
-                    quantity-=1;
-                    mQuantityText.setText(String.valueOf(quantity));
-                }else {
+                if (mCurrentBookUri != null) {
+                    String qtd = mQuantityText.getText().toString();
+                    quantity = Integer.parseInt(qtd);
+                    if (quantity >= 1) {
+                        quantity -= 1;
+                        mQuantityText.setText(String.valueOf(quantity));
+                    } else {
+                        Toast.makeText(getBaseContext(), getString(R.string.info_value_quantity), Toast.LENGTH_LONG).show();
+                    }
+                }else{
                     Toast.makeText(getBaseContext(), getString(R.string.info_value_quantity), Toast.LENGTH_LONG).show();
                 }
             }

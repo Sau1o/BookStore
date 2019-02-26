@@ -29,7 +29,7 @@
         <provider
             android:authorities="com.example.android.books"
             android:name=".data.StoreProvider"
-            android:exported="true"
+            android:exported="false"
              />
     </application>
     <uses-permission android:name="android.permission.CALL_PHONE" />
