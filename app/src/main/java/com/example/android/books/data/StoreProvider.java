@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.android.books.data.StoreContract.BookEntry;
 
@@ -78,6 +79,7 @@ public class StoreProvider extends ContentProvider {
 
         String name = values.getAsString(BookEntry.COLUMN_BOOK_NAME);
         if (name == null) {
+            Toast.makeText(getContext(),"falta nome",Toast.LENGTH_LONG).show();
             throw new IllegalArgumentException("Book requires a name");
         }
 

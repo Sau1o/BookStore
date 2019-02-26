@@ -122,7 +122,12 @@ public class EditorActivity extends AppCompatActivity implements
 
     }
 
-    private void saveBook(){
+    private boolean saveBook(){
+
+        boolean testName = false;
+        boolean testPrice = false;
+        boolean testSupplierPhone = false;
+        boolean testSupplierName = false;
 
         String nameString = mNameEditText.getText().toString().trim();
         String priceString = mPriceEditText.getText().toString().trim();
@@ -133,49 +138,68 @@ public class EditorActivity extends AppCompatActivity implements
                 TextUtils.isEmpty(nameString) && TextUtils.isEmpty(priceString) &&
                 TextUtils.isEmpty(quantityString) && TextUtils.isEmpty(supplierNameString) &&
                 TextUtils.isEmpty(supplierPhoneString)) {
-            return;
+            return false;
         }
 
         ContentValues values = new ContentValues();
-        values.put(BookEntry.COLUMN_BOOK_NAME, nameString);
+        if (!TextUtils.isEmpty(nameString)) {
+            values.put(BookEntry.COLUMN_BOOK_NAME, nameString);
+            testName = true;
+        }
         int price = 0;
         if(!TextUtils.isEmpty(priceString)){
             price = Integer.parseInt(priceString);
+            testPrice = true;
         }
         values.put(BookEntry.COLUMN_BOOK_PRICE, price);
+
         int quantity = 0;
         if(!TextUtils.isEmpty(quantityString)){
             quantity = Integer.parseInt(quantityString);
         }
         values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantity);
-        values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, supplierNameString);
+
+        if(!TextUtils.isEmpty(supplierNameString)) {
+            values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, supplierNameString);
+            testSupplierName = true;
+        }
+
         int phone = 0;
         if(!TextUtils.isEmpty(supplierPhoneString)){
             phone = Integer.parseInt(supplierPhoneString);
+            testSupplierPhone = true;
         }
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, phone);
 
-        if (mCurrentBookUri == null) {
+        boolean campoVazio = testName && testPrice && testSupplierName && testSupplierPhone;
 
-            Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+        if (!campoVazio){
+            return campoVazio;
+        }else {
 
-            if (newUri == null) {
-                Toast.makeText(this, getString(R.string.editor_insert_book_failed),
-                        Toast.LENGTH_SHORT).show();
+            if (mCurrentBookUri == null) {
+
+                Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+
+                if (newUri == null) {
+                    Toast.makeText(this, getString(R.string.editor_insert_book_failed),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString(R.string.editor_insert_book_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(this, getString(R.string.editor_insert_book_successful),
-                        Toast.LENGTH_SHORT).show();
-            }
-        }else{
-            int rowsAffected = getContentResolver().update(mCurrentBookUri, values, null, null);
+                int rowsAffected = getContentResolver().update(mCurrentBookUri, values, null, null);
 
-            if (rowsAffected == 0) {
-                Toast.makeText(this, getString(R.string.editor_update_book_failed),
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, getString(R.string.editor_update_book_successful),
-                        Toast.LENGTH_SHORT).show();
+                if (rowsAffected == 0) {
+                    Toast.makeText(this, getString(R.string.editor_update_book_failed),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, getString(R.string.editor_update_book_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
             }
+            return campoVazio;
         }
     }
 
@@ -199,8 +223,12 @@ public class EditorActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
-                saveBook();
-                finish();
+                boolean isEmpty = saveBook();
+                if (!isEmpty){
+                   Toast.makeText(this,getText(R.string.information),Toast.LENGTH_LONG).show();
+                }else {
+                    finish();
+                }
                 return true;
             case R.id.action_delete:
                 showDeleteConfirmationDialog();
